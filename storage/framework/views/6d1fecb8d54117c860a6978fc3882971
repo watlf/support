@@ -1,45 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+<?php $__env->startSection('title', 'T-Mobile support'); ?>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('layouts.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>How may we help you?</h1>
+                <hr>
+                <p>Contact T-Mobile Customer Service by phone, chat, or TTY. Our team is ready to help you with billing, account, coverage, or phone questions..</p>
+                <p>
+                    <?php /*<a href="#about" class="btn btn-primary btn-xl page-scroll">Most popular question</a>*/ ?>
+                    <a href="auth/login" class="btn btn-xl btn-info">Log In</a>
+                </p>
+                <div class="row">
+                    <p>
+                        Don't Have an Account?
+                        <a href="auth/register">Register.</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </body>
-</html>
+    </header>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
