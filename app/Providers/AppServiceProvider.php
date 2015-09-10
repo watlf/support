@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use ReCaptcha\ReCaptcha;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('captcha', function($attribute, $value, $parameters){
+            $recaptcha = new ReCaptcha(env('RECAPTCHA_SECRETKEY'));
+
+            $resp = $recaptcha->verify($value);
+
+            return $resp->isSuccess();
+        });
     }
 
     /**

@@ -470,3 +470,26 @@ img::-moz-selection {
 body {
  webkit-tap-highlight-color: #222;
 }
+
+.form-group .error-block {
+  display: none;
+  color: red;
+  font-size: 14px;
+ }
+.form-group.error input[type="text"] {
+  border: 1px solid red;
+ }
+.form-group.error input[type="email"] {
+  border: 1px solid red;
+ }
+ .form-group.error input[type="password"] {
+  border: 1px solid red;
+ }
+
+.form-group.error textarea {
+  border: 1px solid red;
+ }
+.form-group.error .error-block {
+  display: block;
+ }
+

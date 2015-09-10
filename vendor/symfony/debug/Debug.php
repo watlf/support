@@ -36,7 +36,7 @@ class Debug
         if (static::$enabled) {
             return;
         }
-die('test');
+
         static::$enabled = true;
 
         if (null !== $errorReportingLevel) {

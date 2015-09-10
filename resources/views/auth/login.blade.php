@@ -11,16 +11,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <form id="formLogin" action="auth/login">
+                    <form method="post" action="/auth/login">
                         {!! csrf_field() !!}
                         <h2 class="form-signin-heading">Please sign in</h2>
-                        <div class="form-group">
+                        @if($errors->first('email'))
+                            <div class="alert alert-warning">
+                                <strong>{{ $errors->first('email') }}</strong>
+                                <a href="/auth/password">Forgot your password?</a>
+                            </div>
+                        @endif
+                        <div class="form-group input-wrapper" data-name="email">
                             <label for="inputEmail" class="sr-only">Email</label>
-                            <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required="" name="email" value="">
+                            <input type="email" class="form-control" placeholder="Email address" required="" name="email" value="{{ old('email') }}">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group input-wrapper" data-name="password">
                             <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="password">
+                            <input type="password" class="form-control" placeholder="Password" required="" name="password">
+                            <span class="error-block">{{ $errors->first('password') }}</span>
                         </div>
                         <div class="checkbox">
                             <label>
@@ -41,3 +48,5 @@
         </div>
     </section>
 @stop
+
+@include('layouts.footer')

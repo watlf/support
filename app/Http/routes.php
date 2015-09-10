@@ -11,17 +11,37 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('admin/profile', ['middleware' => 'auth', function () {
+    //
+}]);
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function ()    {
+        return view('welcome');
+    });
+
+    Route::get('user/profile', function () {
+        view('user.profile');
+    });
+
+    Route::get('admin/panel', ['middleware' => 'auth.admin', function () {
+        //
+    }]);
+
+
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
 });
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
 
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('register/verify/{confirmationCode}', 'Auth\RegistrationController@confirm');
+Route::post('auth/register', 'Auth\RegistrationController@store');
 
 
 Route::controllers([

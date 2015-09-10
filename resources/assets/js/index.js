@@ -1,13 +1,22 @@
 $(document).ready(function() {
-    $('#formLogin').submit(function (event) {
+    $('#formRegister').submit(function(event){
         event.preventDefault();
 
         var data = $(this).serialize();
+        var form = $(this);
 
-        $.post('auth/login', data).success(function (responce) {
+        $("div").removeClass('error');
+
+        $.post('/auth/register', data).success(function (responce) {
             console.log(data);
-        }).error(function (message) {
-            console.log(message);
+        }).fail(function (response) {
+
+            Object.keys(response.responseJSON).forEach(function(field){
+                form.find('div[data-name='+field+']')
+                    .addClass('error')
+                    .find('.error-block').
+                    html(response.responseJSON[field][0]);
+            });
         });
     });
 });

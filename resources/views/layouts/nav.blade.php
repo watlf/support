@@ -6,7 +6,9 @@
                 <span class="sr-only">T-Mobile</span>
                 <span class="icon-bar">Admin</span>
                 <span class="icon-bar">Account</span>
-                <span class="icon-bar">Log Out</span>
+                <span class="icon-bar">
+                    <a href="/auth/logout">Log Out</a>
+                </span>
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">T-Mobile</a>
         </div>
@@ -15,13 +17,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="#services">Admin</a>
+                    <a class="page-scroll" style="color: #0b97c4;" href="/user/profile">{{Auth::user()->name}}</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#portfolio">Account</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Log Out</a>
+                    <a class="page-scroll" href="/auth/logout">Log Out</a>
                 </li>
             </ul>
         </div>

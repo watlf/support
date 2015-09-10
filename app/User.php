@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'confirmation_code'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -42,6 +42,14 @@ class User extends Model implements AuthenticatableContract,
      */
     public function roles()
     {
-        return $this->belongsToMany('App\Role', 'user_roles');
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    /**
+     * The countries that belong to the user.
+     */
+    public function countries()
+    {
+       return $this->belongsToMany(Country::class, 'user_countries');
     }
 }
