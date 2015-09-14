@@ -10,6 +10,12 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+/**
+ * App\User
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|Country[] $countries
+ */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -51,5 +57,24 @@ class User extends Model implements AuthenticatableContract,
     public function countries()
     {
        return $this->belongsToMany(Country::class, 'user_countries');
+    }
+
+    public function question()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function getRole()
+    {
+        $roles = $this->roles()->first();
+
+        return array_get($roles, 'name');
+    }
+
+    public function hasRole($role)
+    {
+        $roles = $this->roles()->first();
+
+        return (array_get($roles, 'name') === $role);
     }
 }

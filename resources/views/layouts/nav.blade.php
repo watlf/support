@@ -16,9 +16,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" style="color: #0b97c4;" href="/user/profile">{{Auth::user()->name}}</a>
-                </li>
+                @if(Auth::user()->hasRole('admin'))
+                    <li>
+                        <a class="page-scroll" style="color: #0b97c4;" href="/admin/panel">Admin panel</a>
+                    </li>
+                @else
+                    <li>
+                        <a class="page-scroll" style="color: #0b97c4;" href="/user/profile">
+                            <span class="glyphicon-user"></span>
+                            {{Auth::user()->name}}
+                        </a>
+                    </li>
+                @endif
                 <li>
                     <a class="page-scroll" href="/auth/logout">Log Out</a>
                 </li>

@@ -37,18 +37,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+                    @if(Session::get('status'))
+                        <div class="alert alert-success">
+                            <p>
+                                <strong>Thanks for your question!</strong>
+                                We will reply you as soon as possible.
+                            </p>
+                        </div>
+                    @endif
                     <h2>
                         Ask a Question.
                     </h2>
                     <hr>
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2 text-center">
-                            <form method="post" action="/ask">
+                            <form method="post" action="ask/{{Auth::user()->getAttribute('id')}}">
                                 {!! csrf_field() !!}
                                 <div class="form-group input-wrapper" data-name="theme">
                                     <label for="inputTheme" class="sr-only">Theme</label>
-                                    <input type="text" class="form-control" placeholder="Theme name" required="" name="name" value="{{ old('name') }}">
-                                    <span class="text-danger">{{$errors->first('name')}}</span>
+                                    <input type="text" class="form-control" placeholder="Theme name" required="" name="theme" value="{{ old('theme') }}">
+                                    <span class="text-danger">{{$errors->first('theme')}}</span>
                                 </div>
                                 <div class="form-group input-wrapper" data-name="text">
                                     <label for="inputEmail" class="sr-only">Text</label>

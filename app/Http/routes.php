@@ -12,27 +12,38 @@
 */
 
 
-Route::get('admin/profile', ['middleware' => 'auth', function () {
-    //
-}]);
-
+Route::controllers([
+    'password' => 'Auth\PasswordController',
+]);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function ()    {
         return view('welcome');
     });
 
-    Route::get('user/profile', function () {
-        view('user.profile');
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/profile', function () {
+            return view('user.profile', ['status' => ['profile' => 'active']]);
+        });
+
+        Route::get('/questions', function () {
+            return view('user.questions', ['status' => ['questions' => 'active']]);
+        });
     });
 
-    Route::get('admin/panel', ['middleware' => 'auth.admin', function () {
-        //
-    }]);
+    Route::group(['prefix' => 'admin', 'middleware' => ['access.role:admin']], function () {
+        Route::get('/panel', function(){
+            return view('admin.panel');
+        });
 
+    });
+
+    Route::post('ask/{user?}', 'QuestionsController@create');
 
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
 });
+
+
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -43,7 +54,3 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::get('register/verify/{confirmationCode}', 'Auth\RegistrationController@confirm');
 Route::post('auth/register', 'Auth\RegistrationController@store');
 
-
-Route::controllers([
-    'password' => 'Auth\PasswordController',
-]);

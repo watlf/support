@@ -35,19 +35,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <?php if(Session::get('status')): ?>
+                        <div class="alert alert-success">
+                            <p>
+                                <strong>Thanks for your question!</strong>
+                                We will reply you as soon as possible.
+                            </p>
+                        </div>
+                    <?php endif; ?>
                     <h2>
                         Ask a Question.
                     </h2>
                     <hr>
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2 text-center">
-                            <form method="post" action="/ask">
+                            <form method="post" action="ask/<?php echo e(Auth::user()->getAttribute('id')); ?>">
                                 <?php echo csrf_field(); ?>
 
                                 <div class="form-group input-wrapper" data-name="theme">
                                     <label for="inputTheme" class="sr-only">Theme</label>
-                                    <input type="text" class="form-control" placeholder="Theme name" required="" name="name" value="<?php echo e(old('name')); ?>">
-                                    <span class="text-danger"><?php echo e($errors->first('name')); ?></span>
+                                    <input type="text" class="form-control" placeholder="Theme name" required="" name="theme" value="<?php echo e(old('theme')); ?>">
+                                    <span class="text-danger"><?php echo e($errors->first('theme')); ?></span>
                                 </div>
                                 <div class="form-group input-wrapper" data-name="text">
                                     <label for="inputEmail" class="sr-only">Text</label>
