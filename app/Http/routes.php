@@ -11,11 +11,6 @@
 |
 */
 
-
-Route::controllers([
-    'password' => 'Auth\PasswordController',
-]);
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function ()    {
         return view('welcome');
@@ -42,8 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
 });
-
-
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
