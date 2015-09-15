@@ -32,4 +32,5 @@
         <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
-@stop
+    @include('layouts.footer')
+@endsection

@@ -22,6 +22,6 @@
             </div>
         </div>
     </header>
-@stop
+    @include('layouts.footer')
+@endsection
 
-@include('layouts.footer')

@@ -27,6 +27,6 @@
     </div>
     <!-- /#wrapper -->
 
+    @include('layouts.footer')
 @stop
 
-@include('layouts.footer')
