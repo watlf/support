@@ -13,10 +13,25 @@
                         <h1>Your question list</h1>
                         <div class="row">
                             <ul class="list-group">
-                                <li class="list-group-item">First question</li>
-                                <li class="list-group-item">Second question</li>
-                                <li class="list-group-item">Third question</li>
-                                <li class="list-group-item">Fourth question</li>
+                                @foreach($questions as $question)
+                                    <li class="list-group-item">
+                                        <p>
+                                            <b>Theme: </b>{{$question->theme}}
+                                        </p>
+                                        <p>
+                                            <b>Question: </b>
+                                            <br>{{$question->text}}
+                                        </p>
+                                        <p>
+                                        @if($question->ansver)
+                                            <b>Answer: </b><br>
+                                            {{$question->ansver}}
+                                        @else
+                                            <span class="text-danger">In your question there is no answer yet.</span>
+                                        @endif
+                                        </p>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

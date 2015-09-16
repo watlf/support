@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var copy = require('gulp-copy');
 var concat = require('gulp-concat');
 
 gulp.task('default', ['css', 'js']);
@@ -21,7 +22,10 @@ gulp.task('js', function() {
             config.components + '/jquery/dist/jquery.js',
             config.components + '/bootstrap-sass/assets/javascripts/bootstrap.js',
             config.resources + '/js/scroll.js',
-            config.resources + '/js/index.js'
+            config.resources + '/js/index.js',
+            config.components + '/angular/index.js',
+            config.components + '/angular-route/index.js'
         ]).pipe(concat('all.js'))
+        //.pipe(minify())
         .pipe(gulp.dest(config.publicDir + '/js'));
 });

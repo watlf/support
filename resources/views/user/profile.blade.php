@@ -10,9 +10,22 @@
         <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Data profile</h1>
+                    <h1 style="text-align: center">Data profile</h1>
                     <div class="row">
-                        <p>Volume-down icon: <span class="glyphicon glyphicon-volume-down"></span></p>
+                        <p>
+                            <b>Your name: </b>
+                            {{$user['name']}}
+                        </p>
+                        @if($user['role'])
+                            <p>
+                                <b>Role:</b>
+                                {{$user['role']}}
+                            </p>
+                        @endif
+                        <p>
+                            <b>Your email:</b>
+                            {{$user['email']}}
+                        </p>
                     </div>
                 </div>
             </div>

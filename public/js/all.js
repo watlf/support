@@ -11642,3 +11642,9 @@ $(document).ready(function() {
     }
     $(document).ready(function() {initMenu();});
 });
+
+require('./angular');
+module.exports = angular;
+
+require('./angular-route');
+module.exports = 'ngRoute';

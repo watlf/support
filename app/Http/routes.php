@@ -16,15 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('welcome');
     });
 
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('/profile', function () {
-            return view('user.profile', ['status' => ['profile' => 'active']]);
-        });
-
-        Route::get('/questions', function () {
-            return view('user.questions', ['status' => ['questions' => 'active']]);
-        });
-    });
+    Route::controller('user', 'UserProfileController');
 
     Route::group(['prefix' => 'admin', 'middleware' => ['access.role:admin']], function () {
         Route::get('/panel', function(){

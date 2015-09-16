@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
+use App\Question;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,24 +12,27 @@ use App\Http\Controllers\Controller;
 
 class UserProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
+
+    public function getProfile()
     {
-        return view('user.profile');
+        $user = \Auth::user();
+
+        return view('user.profile', [
+            'status' => ['profile' => 'active'],
+            'user' => [
+                'name'  => $user->name,
+                'role'  => $user->getRole(),
+                'email' => $user->email,
+            ]
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public function getQuestions()
     {
-        //
+        return view('user.questions', [
+            'questions' => \Auth::user()->question,
+            'status' => ['questions' => 'active']
+        ]);
     }
 
     /**
