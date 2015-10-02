@@ -22,9 +22,9 @@ gulp.task('js', function() {
             config.components + '/jquery/dist/jquery.js',
             config.components + '/bootstrap-sass/assets/javascripts/bootstrap.js',
             config.resources + '/js/scroll.js',
-            config.resources + '/js/index.js',
-            config.components + '/angular/index.js',
-            config.components + '/angular-route/index.js'
+            config.resources + '/js/index.js'
+         //   config.components + '/angular/index.js',
+         //   config.components + '/angular-route/index.js'
         ]).pipe(concat('all.js'))
         //.pipe(minify())
         .pipe(gulp.dest(config.publicDir + '/js'));
