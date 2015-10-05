@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'T-Mobile Login')
+@section('title', 'Login')
 
 @section('content')
     <div class="navbar-header">
-        <a class="navbar-brand page-scroll" href="{{url('/')}}">T-Mobile</a>
+        <a class="navbar-brand" href="{{url('/')}}">{{config('app.logo')}}</a>
     </div>
     <section style="height: 100%">
         <div class="container">

@@ -29,7 +29,8 @@ class RegistrationController extends Controller
             'country' => 'required|min:3',
             'g-recaptcha-response' => 'required|captcha',
         ],[
-            'g-recaptcha-response.captcha' => 'It\'s not so simple, bu-ga-ga.',
+            'g-recaptcha-response.required' => 'The captcha is required',
+            'g-recaptcha-response.captcha' => 'It\'s not so simple, bu-ga-ga.'
         ]);
 
         $confirmation_code = str_random(30);

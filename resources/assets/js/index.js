@@ -20,6 +20,29 @@ $(document).ready(function() {
         });
     });
 
+    $('#formAskQuestion').submit(function(event){
+        event.preventDefault();
+
+        var data = $(this).serialize();
+        var form = $(this);
+
+        $("div").removeClass('error');
+
+        $.post(form.attr('action'), data).success(function (responce) {
+            $('.alert-success').show(200);
+            form[0].reset();
+            setTimeout(function(){ $('.alert-success').hide(200) }, 3000);
+        }).fail(function (response) {
+
+            Object.keys(response.responseJSON).forEach(function(field){
+                form.find('div[data-name='+field+']')
+                    .addClass('error')
+                    .find('.error-block').
+                    html(response.responseJSON[field][0]);
+            });
+        });
+    });
+
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'T-Mobile user profile')
+@section('title', 'User profile')
 
 @section('content')
     <div id="wrapper">

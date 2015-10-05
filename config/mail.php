@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply@tmobile.com', 'name' => 'T-Mobile'],
+    'from' => ['address' => 'noreply@tmobile.com', 'name' => config('app.logo')],
 
     /*
     |--------------------------------------------------------------------------

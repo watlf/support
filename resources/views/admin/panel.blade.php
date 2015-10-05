@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'T-Mobile admin panel')
+@section('title', 'Admin panel')
 
 @section('content')
     <div id="wrapper">

@@ -6,7 +6,7 @@
 <body>
     <h2>Verify Your Email Address</h2>
     <div>
-        Thanks for creating an account in T-Mobile.
+        Thanks for creating an account in {{config('app.logo')}}.
         Please follow the link below to verify your email address
         <a href="{{ url('register/verify/' . $confirmation_code) }}">verify</a>.
     </div>
