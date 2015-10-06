@@ -14,13 +14,14 @@
                         <div class="row">
                             <ul class="list-group">
                                 @foreach($questions as $question)
-                                    <li class="list-group-item">
+                                    <li class="list-group-item" style="margin-bottom: 10px;">
                                         <p>
-                                            <b>Theme: </b>{{$question->theme}}
+                                            <b>Theme: </b>
+                                            {{$question->theme}}
                                         </p>
                                         <p>
                                             <b>Question: </b>
-                                            <br>{{$question->text}}
+                                            <i>{{$question->text}}</i>
                                         </p>
                                         <p>
                                         @if($question->ansver)
@@ -34,6 +35,7 @@
                                 @endforeach
                             </ul>
                         </div>
+                        {!! $questions->render() !!}
                     </div>
                 </div>
             </div>

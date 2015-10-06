@@ -30,7 +30,7 @@ class UserProfileController extends Controller
     public function getQuestions()
     {
         return view('user.questions', [
-            'questions' => \Auth::user()->question,
+            'questions' => \Auth::user()->question()->paginate(3),
             'status' => ['questions' => 'active']
         ]);
     }

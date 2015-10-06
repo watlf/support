@@ -11635,3 +11635,6 @@ Stack trace:
 #52 /home/andrey/Documents/www/support.loc/support/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(87): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #53 /home/andrey/Documents/www/support.loc/support/public/index.php(57): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #54 {main}  
+[2015-10-06 07:54:56] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Illuminate\Database\Eloquent\Collection::paginate()' in /home/andrey/Documents/www/support.loc/support/app/Http/Controllers/UserProfileController.php:35
+Stack trace:
+#0 {main}  
