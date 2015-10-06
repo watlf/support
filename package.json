@@ -3,6 +3,7 @@
   "devDependencies": {
     "angular": "^1.4.5",
     "angular-route": "^1.4.5",
+    "angular-ui-router": "^0.2.15",
     "gulp": "^3.8.8",
     "gulp-concat": "^2.6.0",
     "gulp-copy": "0.0.2",

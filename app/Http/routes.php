@@ -19,8 +19,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller('user', 'UserProfileController');
 
     Route::group(['prefix' => 'admin', 'middleware' => ['access.role:admin']], function () {
-        Route::get('/panel', function(){
-            return view('admin.panel');
+        Route::get('/', function(){
+            return view('admin.index');
         });
 
     });

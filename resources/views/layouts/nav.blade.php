@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::user()->hasRole('admin'))
                     <li>
-                        <a class="" style="color: #0b97c4;" href="/admin/panel">Admin panel</a>
+                        <a class="" style="color: #0b97c4;" href="/admin">Admin panel</a>
                     </li>
                 @endif
                     <li>
