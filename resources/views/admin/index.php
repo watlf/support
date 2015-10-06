@@ -14,6 +14,9 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li>
+                <a href="<?= url('/')?>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon-home"></i></span>Site</a>
+            </li>
+            <li>
                 <a ui-sref="questions({})"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Questions</a>
             </li>
             <li>
