@@ -1,8 +1,7 @@
 (function(){
-    var app = angular.module('app', ['ui.router']);
-
     "use strict";
-    app.controller('UsersController', function( $scope){
 
+    angular.module('app.controller').controller('UsersController', function($scope) {
+        $scope.users = 'It works!';
     });
 })();

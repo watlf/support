@@ -1,55 +1,43 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var copy = require('gulp-copy');
-var concat = require('gulp-concat');
+var elixir = require('laravel-elixir');
+require('laravel-elixir-bower');
+require('laravel-elixir-angular');
+require('laravel-elixir-bowerbundle');
 
-gulp.task('default', ['css', 'js', 'angular', 'adminHtml', 'adminJs']);
-
-var config = {
-    components: './node_modules',
-    resources: './resources/assets',
-    publicDir: './public'
-};
-
-gulp.task('css', function() {
-    return gulp.src('./resources/assets/css/app.css')
-        .pipe(sass({includePaths:[config.components + '/bootstrap-sass/assets/stylesheets']}))
-        .pipe(gulp.dest(config.publicDir + '/css'));
-});
-
-gulp.task('js', function() {
-    return gulp.src([
-            config.components + '/jquery/dist/jquery.js',
-            config.components + '/bootstrap-sass/assets/javascripts/bootstrap.js',
-            config.resources + '/js/scroll.js',
-            config.resources + '/js/index.js'
-        ]).pipe(concat('all.js'))
-        //.pipe(minify())
-        .pipe(gulp.dest(config.publicDir + '/js'));
-});
+elixir.config.sourcemaps = true;
 
 /**
  * For admin panel
  */
-gulp.task('angular', function() {
-    return gulp.src([
-           config.components + '/angular/angular.js',
-           config.components + '/angular-route/angular-route.js',
-           config.components + '/angular-ui-router/release/angular-ui-router.js'
-        ]).pipe(concat('angular.js'))
-        //.pipe(minify())
-        .pipe(gulp.dest(config.publicDir + '/assets/admin/js'));
+elixir.config.registerWatcher(
+    'copy',
+    ["resources/admin/angular/**/*.html"],
+    'default'
+);
+
+elixir(function(mix) {
+    mix.bowerBundle('site', 'resources/assets/bundle')
+        .copy('resources/assets/bundle/site.js*', 'public/js')
+        .copy('resources/assets/bundle/site.css*', 'public/css')
+        .scripts([
+            'index.js',
+            'scroll.js'
+        ])
+        .styles(
+        [
+            'app.css'
+        ],
+        'public/css/all.css'
+    );
 });
 
-gulp.task('adminHtml', function() {
-    return gulp.src('./resources/admin/angular/app/**/*.html')
-        .pipe(gulp.dest(config.publicDir + '/assets/admin/views'));
-});
-
-gulp.task('adminJs', function() {
-    return gulp.src([
-        './resources/admin/angular/app/**/*.js',
-        './resources/admin/angular/*.js'
-        ]).pipe(concat('all.js'))
-        .pipe(gulp.dest(config.publicDir + '/assets/admin/js'));
+/**
+ * For front site
+ */
+elixir(function(mix) {
+    mix
+        .copy('resources/admin/angular/**/*.html', 'public/assets/admin/views/')
+        .angular('resources/admin/angular/', 'public/assets/admin/js')
+        .bowerBundle('admin','resources/assets/bundle')
+        .copy('resources/assets/bundle/admin.js*', 'public/assets/admin/js')
+        .copy('resources/assets/bundle/admin.css*', 'public/assets/admin/css');
 });

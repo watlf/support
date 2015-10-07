@@ -47,7 +47,7 @@
                             @include('layouts.captcha')
                             <span class="text-danger">{{$errors->first('g-recaptcha-response')}}</span>
                         </div>
-                        <button class="btn btn-lx btn-success" type="submit">Registration</button>
+                        <button class="btn btn-lg btn-success" type="submit">Registration</button>
                     </form>
                 </div>
             </div>

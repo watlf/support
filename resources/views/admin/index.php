@@ -2,13 +2,11 @@
 <html ng-app="app">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
-    <meta name="description" content="">
+    <title>Admin panel <?= config('app.logo')?></title>
     <meta name="csrf-token" content="<?=csrf_token()?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/app.css">
-    <base href="/assets/admin/">
+    <link rel="stylesheet" href="/assets/admin/css/admin.css">
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 </head>
 <body>
     <div id="sidebar-wrapper">
@@ -17,24 +15,24 @@
                 <a href="<?= url('/')?>"><span class="fa-stack fa-lg pull-left"><i class="glyphicon-home"></i></span>Site</a>
             </li>
             <li>
-                <a ui-sref="questions({})"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Questions</a>
+                <a ui-sref="questions"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Questions</a>
             </li>
             <li>
-                <a ui-sref="countries({})"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Countries</a>
+                <a ui-sref="countries"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Countries</a>
             </li>
             <li>
-                <a ui-sref="users({})"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Users</a>
+                <a ui-sref="users"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Users</a>
             </li>
         </ul>
     </div>
     <div id="page-content-wrapper">
         <div class="container-fluid xyz">
-            <div ui-view="main" class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-2 main">
+            <div ui-view="main" class="col-sm-9 col-sm-offset-4 col-md-10 col-md-offset-3 main">
 
             </div>
         </div>
     </div>
-    <script src="/assets/admin/js/angular.js"></script>
-    <script src="/assets/admin/js/all.js"></script>
+    <script src="/assets/admin/js/admin.js"></script>
+    <script src="/assets/admin/js/app.js"></script>
 </body>
 </html>

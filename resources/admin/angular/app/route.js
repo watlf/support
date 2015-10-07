@@ -1,31 +1,30 @@
-//(function(){
+(function(){
     "use strict";
-    var app = angular.module('app', ['ngRoute', 'ui.router']);
 
-    app.config(function( $urlRouterProvider, $stateProvider) {
+    angular.module('app.router').config(function($stateProvider, $urlRouterProvider) {
 
         var view = function (template) {
-            return 'views/' + template + '/index.html';
+            return '/assets/admin/views/app/' + template + '/index.html';
         };
 
-        $urlRouterProvider.otherwise('users');
+        $urlRouterProvider.otherwise('/users');
 
         $stateProvider
+            .state('users', {
+                url:'/users',
+                views: {
+                    main: {
+                        controller:'UsersController',
+                        templateUrl: view('user')
+                    }
+                }
+            })
             .state('countries', {
                 url:'/countries',
                 views:{
                     main: {
                         //controller:'CountriesController',
                         templateUrl:view('countries')
-                    }
-                }
-            })
-            .state('users', {
-                url:'/users',
-                views: {
-                    main: {
-                       // controller:'UsersController',
-                        templateUrl: view('user')
                     }
                 }
             })
@@ -39,4 +38,4 @@
                 }
             });
     });
-//});
+})();

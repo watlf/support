@@ -1,0 +1,45 @@
+{
+  "name": "support",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "1.4",
+    "angular-bootstrap": "~0.13.0",
+    "angular-ui-router": "~0.2.15",
+    "restangular": "~1.5.1",
+    "ng-table": "~0.5.4",
+    "bootstrap": "~3.3.5",
+    "lodash": "~3.10.0",
+    "jquery-ui": "~1.11.4"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  },
+  "bundles": {
+    "site": [
+      "jquery",
+      "jquery-ui",
+      "bootstrap"
+    ],
+    "admin": [
+      "jquery",
+      "jquery-ui",
+      "bootstrap",
+      "lodash",
+      "angular",
+      "angular-bootstrap",
+      "angular-ui-router",
+      "restangular",
+      "ng-table"
+    ]
+  }
+}
