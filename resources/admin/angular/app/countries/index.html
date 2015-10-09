@@ -1,3 +1,24 @@
 <div class="content">
-    <h1>Admin panel countries</h1>
+    <h1>Manage countries.</h1>
+    <div ng-if="errors" class="alert alert-danger">
+        <strong>Warning!</strong> {{errors.country}}
+    </div>
+    <table ng-table="tableParams" class="table">
+        <tr ng-repeat="country in $data track by $index">
+            <td title="''">{{$index+1}}</td>
+            <td title="'User'">
+                <input ng-disabled="!country.$edit" type="text" ng-model="country.name" >
+            </td>
+            <td>
+                <button ng-if="!country.$edit"
+                        class="btn-sm btn-default"
+                        ng-click="country.$edit = true">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </button>
+                <button ng-if="country.$edit" ng-click="edit(country)" class="btn-sm btn-success">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>

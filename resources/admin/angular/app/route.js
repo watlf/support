@@ -24,12 +24,17 @@
                     }
                 }
             })
-            .state('countries', {
+            .state('countriesList', {
                 url:'/countries',
                 views:{
                     main: {
                         controller:'CountriesController',
                         templateUrl:view('countries')
+                    }
+                },
+                resolve: {
+                    Countries: function(Restangular) {
+                        return Restangular.all('countries').getList();
                     }
                 }
             })

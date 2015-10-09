@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         Route::resource('users', 'UserProfileController');
+        Route::resource('countries', 'CountriesController');
     });
 
     Route::post('ask/{user?}', 'QuestionsController@create');

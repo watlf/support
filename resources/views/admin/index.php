@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="countries({})">
+                <a ui-sref="countriesList({})">
                     <span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th-list"></i></span>Countries
                 </a>
             </li>

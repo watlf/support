@@ -23,7 +23,7 @@ class Country extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'id'];
 
     /**
      * Indicates if the model should be timestamped.

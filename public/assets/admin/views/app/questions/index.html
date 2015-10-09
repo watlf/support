@@ -1,3 +1,12 @@
 <div class="content">
-    <h1>Admin panel questions</h1>
+    <h1>List questions.</h1>
+    <table ng-table="tableParams" class="table">
+        <tbody  ng-show="!loading">
+        <tr ng-repeat="question in $data">
+            <td title="'Theme'">{{question.theme}}</td>
+            <td title="'User'">{{question.user}}</td>
+            <td title="'Created'">{{question.created_at}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

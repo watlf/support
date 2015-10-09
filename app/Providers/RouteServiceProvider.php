@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Country;
 use App\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -28,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->model('users', User::class);
+        $router->model('countries', Country::class);
     }
 
     /**

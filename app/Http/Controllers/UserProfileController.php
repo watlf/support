@@ -81,10 +81,11 @@ class UserProfileController extends Controller
      */
     public function update(User $user,Request $request)
     {
+        $id = (int)$user->getAttribute('id');
+
         $this->validate($request, [
             'name' => 'required|min:2',
-//            'email' => "required|email|unique:users,email,$id",
-            'email' => "required|email",
+            'email' => "required|email|unique:users,email,$id",
             'confirmed' => 'boolean'
         ]);
 

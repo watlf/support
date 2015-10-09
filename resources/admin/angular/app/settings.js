@@ -14,6 +14,7 @@
             var newResponse;
             switch (what + ':' + operation) {
                 case 'users:getList':
+                case 'countries:getList':
                     newResponse = data.data;
                     newResponse.meta = data;
                     break;
