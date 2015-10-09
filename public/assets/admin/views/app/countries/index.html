@@ -6,7 +6,7 @@
     <table ng-table="tableParams" class="table">
         <tr ng-repeat="country in $data track by $index">
             <td title="''">{{$index+1}}</td>
-            <td title="'User'">
+            <td title="'Country'">
                 <input ng-disabled="!country.$edit" type="text" ng-model="country.name" >
             </td>
             <td>

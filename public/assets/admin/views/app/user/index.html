@@ -14,6 +14,7 @@
     <table ng-table="tableParams" class="table table-striped">
         <tbody  ng-show="!loading">
             <tr ng-repeat="user in $data|filter:search track by $index" style="text-align: center;">
+                <td title="''">{{$index+1}}</td>
                 <td title="'Name'" >
                     <span ng-if="!user.$edit" >{{user.name}}</span>
                     <input ng-if="user.$edit" type="text" ng-model="user.name">
