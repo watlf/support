@@ -16,17 +16,17 @@
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::user()->hasRole('admin'))
                     <li>
-                        <a class="" style="color: #0b97c4;" href="/admin">Admin panel</a>
+                        <a class="" style="color: #0b97c4;" href="/admin"><i class="glyphicon glyphicon-cog"></i>&nbsp;Admin panel</a>
                     </li>
                 @endif
                     <li>
                         <a class="" style="color: #0b97c4;" href="/user/profile">
-                            <span class="glyphicon-user"></span>
-                            {{Auth::user()->name}}
+                            <i class="glyphicon glyphicon-user"></i>
+                            &nbsp;{{Auth::user()->name}}
                         </a>
                     </li>
                 <li>
-                    <a class="" href="/auth/logout">Log Out</a>
+                    <a class="" href="/auth/logout"><i class="glyphicon glyphicon-log-out"></i>&nbsp;Log Out</a>
                 </li>
             </ul>
         </div>

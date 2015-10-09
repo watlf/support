@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
             return view('admin.index');
         });
 
+        Route::resource('users', 'UserProfileController');
     });
 
     Route::post('ask/{user?}', 'QuestionsController@create');

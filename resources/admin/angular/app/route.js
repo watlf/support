@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    angular.module('app.router').config(function($stateProvider, $urlRouterProvider) {
+    angular.module('app.router').config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
 
         var view = function (template) {
             return '/assets/admin/views/app/' + template + '/index.html';
@@ -10,12 +10,17 @@
         $urlRouterProvider.otherwise('/users');
 
         $stateProvider
-            .state('users', {
+            .state('usersList', {
                 url:'/users',
                 views: {
                     main: {
                         controller:'UsersController',
                         templateUrl: view('user')
+                    }
+                },
+                resolve: {
+                    Users: function(Restangular) {
+                        return Restangular.all('users').getList();
                     }
                 }
             })
@@ -23,7 +28,7 @@
                 url:'/countries',
                 views:{
                     main: {
-                        //controller:'CountriesController',
+                        controller:'CountriesController',
                         templateUrl:view('countries')
                     }
                 }
@@ -32,10 +37,10 @@
                 url:'/questions',
                 views:{
                     main:{
-                        //controller:'QuestionsController',
+                        controller:'QuestionsController',
                         templateUrl: view('questions')
                     }
                 }
             });
-    });
+    }]);
 })();

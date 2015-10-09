@@ -18,6 +18,8 @@ elixir(function(mix) {
     mix.bowerBundle('site', 'resources/assets/bundle')
         .copy('resources/assets/bundle/site.js*', 'public/js')
         .copy('resources/assets/bundle/site.css*', 'public/css')
+        .copy('resources/assets/bundle/admin.css*', 'public/css')
+        .copy('resources/assets/fonts/*.*', 'public/css')
         .scripts([
             'index.js',
             'scroll.js'
@@ -38,6 +40,5 @@ elixir(function(mix) {
         .copy('resources/admin/angular/**/*.html', 'public/assets/admin/views/')
         .angular('resources/admin/angular/', 'public/assets/admin/js')
         .bowerBundle('admin','resources/assets/bundle')
-        .copy('resources/assets/bundle/admin.js*', 'public/assets/admin/js')
-        .copy('resources/assets/bundle/admin.css*', 'public/assets/admin/css');
+        .copy('resources/assets/bundle/admin.js*', 'public/assets/admin/js');
 });

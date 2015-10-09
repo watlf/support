@@ -10,6 +10,7 @@
     "angular": "1.4",
     "angular-bootstrap": "~0.13.0",
     "angular-ui-router": "~0.2.15",
+    "angular-ui-sortable": "~0.13.4",
     "restangular": "~1.5.1",
     "ng-table": "~0.5.4",
     "bootstrap": "~3.3.5",
@@ -38,6 +39,7 @@
       "angular",
       "angular-bootstrap",
       "angular-ui-router",
+      "angular-ui-sortable",
       "restangular",
       "ng-table"
     ]

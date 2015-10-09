@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
-use App\Question;
 use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Response;
 
 class UserProfileController extends Controller
 {
@@ -30,9 +29,14 @@ class UserProfileController extends Controller
     public function getQuestions()
     {
         return view('user.questions', [
-            'questions' => \Auth::user()->question()->paginate(3),
+            'questions' => \Auth::user()->questions()->paginate(3),
             'status' => ['questions' => 'active']
         ]);
+    }
+
+    public function index()
+    {
+        return User::with('country')->paginate(10);
     }
 
     /**
@@ -65,29 +69,44 @@ class UserProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param  User  $user
+     * @return User
      */
-    public function update(Request $request, $id)
+    public function update(User $user,Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:2',
+//            'email' => "required|email|unique:users,email,$id",
+            'email' => "required|email",
+            'confirmed' => 'boolean'
+        ]);
+
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'confirmed' => $request->input('confirmed'),
+        ]);
+
+        return $user;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param  User  $user
+     * @return User
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return $user;
     }
 }

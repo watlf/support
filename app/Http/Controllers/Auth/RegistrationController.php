@@ -44,7 +44,7 @@ class RegistrationController extends Controller
 
         $country = Country::firstOrCreate(['name' => $request->input('country')]);
 
-        $user->countries()->save($country);
+        $user->country()->save($country);
 
         Mail::send('email.verify', ['confirmation_code' => $confirmation_code], function($message) use ($request) {
             $message->to($request->input('email'), $request->input('name'))

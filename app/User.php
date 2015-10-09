@@ -14,7 +14,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * App\User
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|Role[] $roles
- * @property-read \Illuminate\Database\Eloquent\Collection|Country[] $countries
+ * @property-read \Illuminate\Database\Eloquent\Collection|Country[] $country
+ * @property-read \Illuminate\Database\Eloquent\Collection|Question[] $questions
  */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -34,7 +35,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'confirmation_code'];
+    protected $fillable = ['id', 'name', 'email', 'password', 'confirmed', 'confirmation_code'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -54,12 +55,12 @@ class User extends Model implements AuthenticatableContract,
     /**
      * The countries that belong to the user.
      */
-    public function countries()
+    public function country()
     {
        return $this->belongsToMany(Country::class, 'user_countries');
     }
 
-    public function question()
+    public function questions()
     {
         return $this->hasMany(Question::class);
     }
@@ -76,5 +77,12 @@ class User extends Model implements AuthenticatableContract,
         $roles = $this->roles()->first();
 
         return (array_get($roles, 'name') === $role);
+    }
+
+    public function getCountry()
+    {
+        $country = $this->country()->first();
+
+        return array_get($country, 'name');
     }
 }

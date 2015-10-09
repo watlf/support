@@ -1,3 +1,53 @@
 <div class="content">
-    <h1>Admin panel {{users}}</h1>
+    <h3>Manage users.</h3>
+    <div style="margin: 20px 0;">
+        <form class="form-inline">
+            <div class="form-group">
+                <label >Search</label>
+                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+            </div>
+        </form>
+    </div>
+    <div ng-if="errors" class="alert alert-danger">
+        <strong>Warning!</strong> {{errors.name}} {{errors.email}}
+    </div>
+    <table ng-table="tableParams" class="table table-striped">
+        <tbody  ng-show="!loading">
+            <tr ng-repeat="user in $data|filter:search track by $index" style="text-align: center;">
+                <td title="'Name'" >
+                    <span ng-if="!user.$edit" >{{user.name}}</span>
+                    <input ng-if="user.$edit" type="text" ng-model="user.name">
+                </td>
+                <td title="'Email'" >
+                    <span ng-if="!user.$edit">{{user.email}}</span>
+                    <input ng-if="user.$edit" type="text" ng-model="user.email">
+                </td>
+                <td title="'Confirmation'" >
+                    <input ng-disabled="!user.$edit" type="checkbox" ng-model="user.confirmed">
+                </td>
+                <td title="'Joined'" >
+                    {{user.created_at}}
+                </td>
+                <td title="'Country'" >
+                    <span>{{user.country[0].name}}</span>
+                </td>
+                <td>
+                    <button ng-if="!user.$edit"
+                            class="btn-sm btn-default"
+                            ng-click="user.$edit = true">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                    <button style="margin-left: 20px;"
+                            ng-if="!user.$edit"
+                            ng-click="delete(user, $data, $index)"
+                            class="btn-sm btn-danger">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    <button ng-if="user.$edit" ng-click="edit(user)" class="btn-sm btn-success">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

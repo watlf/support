@@ -71,6 +71,7 @@
         "command.route.clear": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.route.list": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.serve": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
+        "command.test.make": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.tinker": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.up": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.vendor.publish": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
