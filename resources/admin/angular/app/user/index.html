@@ -11,17 +11,20 @@
     <div ng-if="errors" class="alert alert-danger">
         <strong>Warning!</strong> {{errors.name}} {{errors.email}}
     </div>
+    <div ng-if="$success" class="alert alert-success">
+        <strong>Success!</strong> The data of the user changed.
+    </div>
     <table ng-table="tableParams" class="table table-striped">
         <tbody  ng-show="!loading">
             <tr ng-repeat="user in $data|filter:search track by $index" style="text-align: center;">
                 <td title="''">{{$index+1}}</td>
                 <td title="'Name'" >
                     <span ng-if="!user.$edit" >{{user.name}}</span>
-                    <input ng-if="user.$edit" type="text" ng-model="user.name">
+                    <input ng-if="user.$edit" type="text" ng-model="user.name" required maxlength="255">
                 </td>
                 <td title="'Email'" >
                     <span ng-if="!user.$edit">{{user.email}}</span>
-                    <input ng-if="user.$edit" type="text" ng-model="user.email">
+                    <input ng-if="user.$edit" type="email" ng-model="user.email" required maxlength="255">
                 </td>
                 <td title="'Confirmation'" >
                     <input ng-disabled="!user.$edit" type="checkbox" ng-model="user.confirmed">

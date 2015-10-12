@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    angular.module('app.controller').controller('UsersController', function($scope, Users, ngTableParams, $location, Restangular) {
+    angular.module('app.controller').controller('UsersController', function($scope, Users, ngTableParams, $location, Restangular, $timeout) {
 
         var Table = ngTableParams;
         var page = _.get($location.search(), 'page', 1);
@@ -34,12 +34,19 @@
         $scope.edit = function(data) {
                 data.save().then(function(user) {
                 data.$edit = false;
+                $scope.$success = true;
                 data = user.plain();
             }).catch(function(error){
                 errors.email = _.get(error, ['data', 'email', 0], '');
                 errors.name  = _.get(error, ['data', 'name', 0], '');
                 $scope.errors = errors;
+                $scope.$success = false;
             });
+
+            $timeout(function (){
+                $scope.$success = false;
+                $scope.errors = false;
+            }, 5000);
         };
 
         $scope.delete = function (user,$data,$index) {

@@ -3,11 +3,14 @@
     <div ng-if="errors" class="alert alert-danger">
         <strong>Warning!</strong> {{errors.country}}
     </div>
+    <div ng-if="$success" class="alert alert-success">
+        <strong>Success!</strong> The name of the country changed.
+    </div>
     <table ng-table="tableParams" class="table">
         <tr ng-repeat="country in $data track by $index">
             <td title="''">{{$index+1}}</td>
             <td title="'Country'">
-                <input ng-disabled="!country.$edit" type="text" ng-model="country.name" >
+                <input ng-disabled="!country.$edit" type="text" ng-model="country.name" required maxlength="255">
             </td>
             <td>
                 <button ng-if="!country.$edit"
@@ -21,4 +24,13 @@
             </td>
         </tr>
     </table>
+    <div>
+        <h3>Add new country name.</h3>
+        <form role="form" ng-submit="add(country)">
+            <div class="form-group">
+                <input type="text" placeholder="Country name" class="form-control" ng-model="country.name" required maxlength="255">
+            </div>
+            <button type="submit" class="btn btn-info">Add</button>
+        </form>
+    </div>
 </div>

@@ -16,7 +16,7 @@ class CountriesController extends Controller
      */
     public function index()
     {
-        return Country::paginate(10);
+        return Country::orderBy('name', 'asc')->paginate(10);
     }
 
     /**
@@ -33,11 +33,17 @@ class CountriesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Country
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:2|unique:countries'
+        ]);
+
+        return Country::create([
+            'name' => $request->input('name')
+        ]);
     }
 
     /**
