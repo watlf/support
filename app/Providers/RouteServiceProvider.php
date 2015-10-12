@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Country;
+use App\Question;
 use App\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -30,6 +31,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $router->model('users', User::class);
         $router->model('countries', Country::class);
+        $router->model('questions', Question::class);
     }
 
     /**

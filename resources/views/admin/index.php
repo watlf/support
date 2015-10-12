@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="questions({})">
+                <a ui-sref="questions.list({})">
                     <span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th-list"></i></span>Questions
                 </a>
             </li>

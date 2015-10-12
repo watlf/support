@@ -25,9 +25,18 @@ class Question extends Model
      */
     protected $fillable = ['theme', 'text', 'answer', 'verified'];
 
+    protected $visible = ['user', 'theme', 'text', 'answer', 'verified', 'created_at', 'id'];
 
-    public function users()
+    //protected $appends = ['user']; //if we want always append getUserAttribute
+
+
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->with('country');
+    }
+
+    public function getUserAttribute()
+    {
+        return $this->user()->with('country')->getResults();
     }
 }

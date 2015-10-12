@@ -17,7 +17,7 @@
             page: page,            // show first page
             count: count           // count per page
         }, {
-            counts: false,
+            counts: false, // edit count per page
             total: Users.meta.total, // length of data
             getData: function ($defer, params) {
 

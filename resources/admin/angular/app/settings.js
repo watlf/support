@@ -15,6 +15,7 @@
             switch (what + ':' + operation) {
                 case 'users:getList':
                 case 'countries:getList':
+                case 'questions:getList':
                     newResponse = data.data;
                     newResponse.meta = data;
                     break;

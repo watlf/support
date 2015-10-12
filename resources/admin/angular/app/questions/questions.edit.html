@@ -1,0 +1,38 @@
+<h3 class="text-center">Manage question and answer.</h3>
+<div style="min-height: 50px">
+    <div ng-class="{'alert-danger': message.error, 'alert-success': message.success}" class="alert">
+        {{message.error}} {{message.success}}
+    </div>
+</div>
+
+<form role="form" ng-submit="answerTheQuestion(question)">
+    <div class="form-group">
+        <label>User name:</label>
+        <span>{{question.user.name}}</span>
+    </div>
+    <div class="form-group">
+        <label>From country:</label>
+        <span>{{question.user.country[0].name}}</span>
+    </div>
+    <div class="form-group">
+        <label>Question verified</label>
+        <input type="checkbox" ng-model="question.verified">
+    </div>
+    <div class="form-group">
+        <label>Theme:</label>
+        <input type="text" class="form-control" ng-model="question.theme" required maxlength="255">
+    </div>
+    <div class="form-group">
+        <label>Question:</label>
+        <textarea rows="10" class="form-control" ng-model="question.text"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Created at:</label>
+        <span>{{question.created_at}}</span>
+    </div>
+    <div class="form-group">
+        <label>Answer the question:</label>
+        <textarea rows="10" class="form-control" ng-model="question.answer"></textarea>
+    </div>
+    <button type="submit" class="btn bt-lg btn-success">Answer</button>
+</form>

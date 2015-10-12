@@ -106,7 +106,11 @@ class UserProfileController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        if ($user->hasRole('admin')) {
+            return response('The administrator does not have to remove.', 422);
+        }
+
+        $user->forceDelete();
 
         return $user;
     }

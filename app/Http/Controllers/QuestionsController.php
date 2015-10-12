@@ -12,6 +12,14 @@ use App\Http\Controllers\Controller;
 class QuestionsController extends Controller
 {
     /**
+     * @return \App\Question[]
+     */
+    public function index()
+    {
+        return Question::orderBy('created_at', 'desc')->paginate(10);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param  Request  $request
@@ -22,7 +30,7 @@ class QuestionsController extends Controller
     {
         $this->validate($request,[
             'theme' => 'required|min:6',
-            'text' => 'required|min:10',
+            'text' => 'required|min:30',
             'g-recaptcha-response' => 'required|captcha',
         ], [
             'g-recaptcha-response.required' => 'The captcha is required',
@@ -55,12 +63,12 @@ class QuestionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param  Question  $question
+     * @return Question
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        //
+        return $question->load('user');
     }
 
     /**
@@ -77,13 +85,27 @@ class QuestionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param  Request $request
+     * @param Question $question
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $this->validate($request, [
+            'theme' => 'required|min:6',
+            'text' => 'required|min:10',
+            'answer' => 'min:50',
+            'verified' => 'boolean',
+        ]);
+
+        $result =  $question->update([
+            'theme' => $request->input('theme'),
+            'text' => $request->input('text'),
+            'answer' => $request->input('answer'),
+            'verified' => $request->input('verified')
+        ]);
+
+        return $result ? $question : response('', 501);
     }
 
     /**

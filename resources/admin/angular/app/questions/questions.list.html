@@ -1,0 +1,29 @@
+<div class="content">
+    <h1>List questions.</h1>
+    <table ng-table="tableParams" class="table">
+        <tbody  ng-show="!loading">
+        <tr ng-repeat="question in $data track by $index" class="text-center">
+            <td width="5">{{$index+1}}</td>
+            <td width="70   " title="'Theme'">{{question.theme}}</td>
+            <td width="5" title="'Verified'">
+                <i ng-class="{
+                'glyphicon glyphicon-ok': question.verified,
+                'glyphicon glyphicon-remove': !question.verified
+                }" class="glyphicon"></i>
+            </td>
+            <td width="5" title="'Answered'" >
+                <i ng-class="{
+                'glyphicon glyphicon-ok': question.answer,
+                'glyphicon glyphicon-remove': !question.answer
+                }" class="glyphicon"></i>
+            </td>
+            <td width="10" title="'Created'">{{question.created_at}}</td>
+            <td width="5" >
+                <button type="button" ng-click="edit(question)" class="btn-sm btn-default">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

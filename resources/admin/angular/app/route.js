@@ -38,12 +38,33 @@
                     }
                 }
             })
+
             .state('questions', {
-                url:'/questions',
+                url:'',
+                abstract: true,
                 views:{
                     main:{
-                        controller:'QuestionsController',
                         templateUrl: view('questions')
+                    }
+                }
+            })
+            .state('questions.list', {
+                url:'/questions',
+                controller:'QuestionsListController',
+                templateUrl: '/assets/admin/views/app/questions/questions.list.html',
+                resolve: {
+                    Questions: function(Restangular) {
+                        return Restangular.all('questions').getList();
+                    }
+                }
+            })
+            .state('questions.edit', {
+                url:'/questions/:id',
+                controller: 'QuestionsEditController',
+                templateUrl: '/assets/admin/views/app/questions/questions.edit.html',
+                resolve: {
+                    Question: function(Restangular, $stateParams) {
+                        return Restangular.one('questions', $stateParams.id).get();
                     }
                 }
             });
