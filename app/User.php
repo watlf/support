@@ -45,19 +45,19 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * The roles that belong to the user.
+     * The role that belong to many the user.
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'user_roles');
+        return $this->belongsToMany(Role::class, 'role_users');
     }
 
     /**
-     * The countries that belong to the user.
+     * The country that belong to many the user.
      */
     public function country()
     {
-       return $this->belongsToMany(Country::class, 'user_countries');
+       return $this->belongsToMany(Country::class, 'country_users');
     }
 
     public function questions()

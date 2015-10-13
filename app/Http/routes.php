@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('questions', 'QuestionsController');
     });
 
-    Route::post('ask/{user?}', 'QuestionsController@create');
+    Route::post('ask/{users?}', 'QuestionsController@create');
 
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
 });

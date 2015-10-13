@@ -31,7 +31,7 @@ $(document).ready(function() {
         $.post(form.attr('action'), data).success(function (responce) {
             $('.alert-success').show(200);
             form[0].reset();
-            setTimeout(function(){ $('.alert-success').hide(200) }, 3000);
+            setTimeout(function(){ $('.alert-success').hide(200) }, 5000);
         }).fail(function (response) {
 
             Object.keys(response.responseJSON).forEach(function(field){

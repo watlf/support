@@ -22,11 +22,11 @@ class QuestionsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  Request  $request
      * @param  User  $user
+     * @param  Request  $request
      * @return Response
      */
-    public function create(Request $request, User $user)
+    public function create(User $user, Request $request)
     {
         $this->validate($request,[
             'theme' => 'required|min:6',
@@ -42,9 +42,7 @@ class QuestionsController extends Controller
             'text' => $request->input('text'),
         ]);
 
-        $question->user_id = $user->getAttribute('id');
-
-        $question->save();
+        $user->questions()->save($question);
 
         return response('', 200);
     }

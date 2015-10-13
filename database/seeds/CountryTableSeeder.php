@@ -21,7 +21,7 @@ class CountryTableSeeder extends Seeder
 
             $country = App\Country::where('name', '=', 'Ukraine')->firstOrFail();
 
-            $user->countries()->save($country);
+            $user->country()->save($country);
         });
     }
 }

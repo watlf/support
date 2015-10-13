@@ -19,7 +19,7 @@ class CreateCountriesTable extends Migration
                 $table->string('name')->unique();
             });
 
-            Schema::create('user_countries', function (Blueprint $table) {
+            Schema::create('country_users', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('user_id')->unsignet();
                 $table->integer('country_id')->unsignet();
@@ -37,7 +37,7 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_countries');
+        Schema::drop('country_users');
         Schema::drop('countries');
     }
 }
