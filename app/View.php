@@ -19,6 +19,15 @@ class View extends Model
      */
     protected $table = 'views';
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    protected $fillable = ['question_id', 'user_id'];
+
     public function users()
     {
         return $this->belongsTo(User::class);

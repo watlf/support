@@ -65,6 +65,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Question::class);
     }
 
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
+
     public function getRole()
     {
         $roles = $this->roles()->first();
@@ -84,5 +89,17 @@ class User extends Model implements AuthenticatableContract,
         $country = $this->country()->first();
 
         return array_get($country, 'name');
+    }
+
+    public function getCountryId()
+    {
+        $country = $this->country()->first();
+
+        return array_get($country, 'id');
+    }
+
+    public function confirmed()
+    {
+        return $this->getAttribute('confirmed');
     }
 }

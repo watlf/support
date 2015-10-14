@@ -42,6 +42,10 @@ class Authenticate
             }
         }
 
+        if ($this->auth->check() && !$this->auth->user()->confirmed()) {
+            return redirect('auth/logout');
+        }
+
         return $next($request);
     }
 }

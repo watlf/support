@@ -74,3 +74,20 @@ $(document).ready(function() {
     }
     $(document).ready(function() {initMenu();});
 });
+
+function questionDetail(id)
+{
+    $.get('question/' + id).success(function(response){
+        console.log(response);
+        var modalQuestion = $('#questionModal');
+
+        modalQuestion.find('.modal-title').text(response.theme);
+        modalQuestion.find('.modal-question').text(response.text);
+        modalQuestion.find('.modal-answer').text(response.answer);
+        modalQuestion.modal();
+    }).fail(function response(response) {
+
+    });
+
+    return false;
+}

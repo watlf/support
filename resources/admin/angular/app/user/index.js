@@ -52,6 +52,9 @@
         $scope.delete = function (user,$data,$index) {
             user.remove().then(function (data) {
                 $data.splice($index, 1);
+            }).catch(function(error){
+                errors.name  = _.get(error, ['data', 'name', 0], '');
+                $scope.errors = errors;
             });
         };
     });

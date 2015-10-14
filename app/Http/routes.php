@@ -12,9 +12,9 @@
 */
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', function ()    {
-        return view('welcome');
-    });
+
+    Route::get('/', 'SiteController@index');
+    Route::get('/question/{questions?}', 'SiteController@show');
 
     Route::controller('user', 'UserProfileController');
 
@@ -29,11 +29,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::post('ask/{users?}', 'QuestionsController@create');
-
-    Route::get('auth/logout', 'Auth\AuthController@getLogout');
 });
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 

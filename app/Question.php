@@ -36,8 +36,23 @@ class Question extends Model
         return $this->belongsTo(User::class)->with('country');
     }
 
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
+
     public function getUserAttribute()
     {
         return $this->user()->with('country')->getResults();
+    }
+
+    public function scopeVerified($query)
+    {
+        return $query->where('verified', true);
+    }
+
+    public function scopeAnswered($query)
+    {
+        return $query->Where('answer', '!=', '');
     }
 }

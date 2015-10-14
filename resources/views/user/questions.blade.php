@@ -14,7 +14,7 @@
                         <div class="row">
                             <ul class="list-group">
                                 @foreach($questions as $question)
-                                    <li class="list-group-item" style="margin-bottom: 10px;">
+                                    <li class="list-group-item" style="margin-bottom: 10px; word-wrap: break-word">
                                         <p>
                                             <b>Theme: </b>
                                             {{$question->theme}}
@@ -24,9 +24,9 @@
                                             <i>{{$question->text}}</i>
                                         </p>
                                         <p>
-                                        @if($question->ansver)
+                                        @if($question->answer)
                                             <b>Answer: </b><br>
-                                            {{$question->ansver}}
+                                            {{$question->answer}}
                                         @else
                                             <span class="text-danger">In your question there is no answer yet.</span>
                                         @endif

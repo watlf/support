@@ -23,9 +23,55 @@
                         Most popularity questions.
                     </h2>
                     <hr>
-                    <p>
-                        <a href="#ask" class="btn btn-info btn-lg page-scroll">Ask a Question</a>
-                    </p>
+                    <div class="list-group all-questions">
+                        <?php if(!$popularity): ?>
+                            <p>
+                                We do not have popular items for your region. Perhaps you'll be time as the first.
+                            </p>
+                        <?php else: ?>
+                            <?php foreach($popularity as $question): ?>
+                                <a href="#" onclick="return questionDetail(<?php echo e($question->id); ?>)" class="list-group-item ">
+                                    <h4 class="list-group-item-heading text-left"><b>Theme:</b><?php echo e($question->theme); ?></h4>
+                                    <p class="list-group-item-text text-left"><?php echo e($question->text); ?></p>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div>
+                        <div style="float: left;">
+                            <a href="#questions" class="btn btn-success btn-lg page-scroll">Questions list</a>
+                        </div>
+                        <div style="text-align: right">
+                            <a href="#ask" class="btn btn-info btn-lg page-scroll">Ask a Question</a>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="questions" style="height: 100%">
+        <div class="container">
+            <div class="text-center">
+                <h2>
+                    All questions.
+                </h2>
+                <hr>
+                <div class="list-group all-questions">
+                    <?php foreach($questions as $question): ?>
+                        <a href="#" onclick="return questionDetail(<?php echo e($question->id); ?>)" class="list-group-item ">
+                            <h4 class="list-group-item-heading text-left"><b>Theme:</b><?php echo e($question->theme); ?></h4>
+                            <p class="list-group-item-text text-left"><?php echo e($question->text); ?></p>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+                <div>
+                    <div style="float: left;"><?php echo $questions->fragment('questions')->render(); ?></div>
+                    <div style="text-align: right">
+                        <a href="#ask" class="btn btn-info btn-lg page-scroll" style="margin: 20px 0;">Ask a Question</a>
+                    </div>
+                    <div style="clear: both"></div>
                 </div>
             </div>
         </div>
@@ -34,7 +80,7 @@
     <section id="ask" style="height: 100%">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="text-center">
                     <div class="alert alert-success" style="display: none;">
                         <p>
                             <strong>Thanks for your question!</strong>
@@ -72,6 +118,29 @@
             </div>
         </div>
     </section>
+    <!-- Modal -->
+    <div id="questionModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold"></h4>
+                </div>
+                <div class="modal-body">
+                    <p><b>Question:</b></p>
+                    <p class="modal-question" style="word-wrap: break-word"></p>
+                    <p><b>Answer:</b></p>
+                    <p class="modal-answer" style="word-wrap: break-word"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <?php echo $__env->make('layouts.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php $__env->stopSection(); ?>
 
